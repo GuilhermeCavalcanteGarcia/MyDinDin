@@ -33,3 +33,5 @@ C:\Users\Guilherme Cavalcante\Documents\POO II\API de POO II\MeuDinDinOficial\My
 C:\Users\Guilherme Cavalcante\Documents\POO II\API de POO II\MeuDinDinOficial\MyDinDin\obj\Debug\net6.0\MyDinDin.pdb
 C:\Users\Guilherme Cavalcante\Documents\POO II\API de POO II\MeuDinDinOficial\MyDinDin\obj\Debug\net6.0\MyDinDin.genruntimeconfig.cache
 C:\Users\Guilherme Cavalcante\Documents\POO II\API de POO II\MeuDinDinOficial\MyDinDin\obj\Debug\net6.0\ref\MyDinDin.dll
+C:\Users\Guilherme Cavalcante\Documents\POO II\API de POO II\MeuDinDinOficial\MyDinDin\bin\Debug\net6.0\Mapster.dll
+C:\Users\Guilherme Cavalcante\Documents\POO II\API de POO II\MeuDinDinOficial\MyDinDin\bin\Debug\net6.0\Mapster.Core.dll

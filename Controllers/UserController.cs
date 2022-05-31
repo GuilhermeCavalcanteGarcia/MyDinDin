@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MyDinDin.Dtos;
 using MyDinDin.Models;
 using MyDinDin.Services;
 
@@ -15,15 +16,17 @@ public class UserController : ControllerBase
  
     }
     [HttpPost]
-    public ActionResult<User> PostUser([FromBody] User userNew)
+    public ActionResult<UserResponseDtos> PostUser([FromBody] UserCreateAndUpdateDtos userNewDtos)
     {
-        User user = _userService.RegisterUser(userNew);
+        var userResponse = _userService.RegisterUser(userNewDtos);
 
         // TIRAR DÚVIDA SOBRE A FUNCIONALIDADE DA LINHA ABAIXO, EXPLICAR O QUE A LINHA ABAIXO FAZ
-        return CreatedAtAction(nameof(GetUsers), new { id = user.Id }, user);
+        return CreatedAtAction(nameof(GetUsers), new { id = userResponse.Id }, userResponse);  
     }
+
+    // Verbo que vai retornar o user seguindo as propiedades da classe Dtos.UserResponseDtos
     [HttpGet]
-    public ActionResult<List<User>> GetUsers()
+    public ActionResult<List<UserResponseDtos>> GetUsers()
     {
         try
         {
@@ -38,13 +41,13 @@ public class UserController : ControllerBase
     }
     [HttpGet]
     [Route("{id:int}")]
-    public ActionResult<User> GetUserId([FromRoute] int id)
+    public ActionResult<UserResponseDtos> GetUserId([FromRoute] int id)
     {
         try
         {
-            User user = _userService.ToRecoverSpecificUser(id);
+            var userResponse = _userService.ToRecoverSpecificUser(id);
 
-            return user;
+            return userResponse;
         }
         catch(Exception)
         {
@@ -52,14 +55,15 @@ public class UserController : ControllerBase
 
         }
     }
+
     [HttpPut("{id:int}")]
-    public ActionResult<User> PutUser([FromRoute] int id, [FromBody] User userUpdate)
+    public ActionResult<UserResponseDtos> PutUser([FromRoute] int id, [FromBody] UserCreateAndUpdateDtos userUpdate)
     {
         try
         {
-            User user = _userService.UpdateUser(id, userUpdate);
+            var userResponse = _userService.UpdateUser(id, userUpdate);
 
-            return Ok(user);
+            return Ok(userResponse);
         }
         catch(Exception)
         {
