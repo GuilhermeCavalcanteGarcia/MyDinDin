@@ -22,4 +22,9 @@ public class User
     [Column(TypeName = "varchar(8)")]
     public string Password_Salt { get; set; }
 
+    // PROPRIEDADES DE NAVEGAÇÃO 
+    public List<Goal> Goal { get; set; }
+    public List<Categories> Category { get; set; }
+
+
 }

@@ -18,5 +18,9 @@ public class MyDinDinContext : DbContext
     // Tabela que vai armazernar os cursos
     // DbSet representa a nossa tabela na memória
     // ou seja, representa nossa tabela no banco de dados.
+    public DbSet<Categories> Categories { get; set; }
+    public DbSet<Expenses> Expenses { get; set; }
+    public DbSet<Goal> Goal { get; set; }
+    public DbSet<Income> Income { get; set; }
     public DbSet<User> User { get; set; }
 }

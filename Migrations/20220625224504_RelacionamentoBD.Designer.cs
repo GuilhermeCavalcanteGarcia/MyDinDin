@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyDinDin.Data;
 
@@ -10,9 +11,10 @@ using MyDinDin.Data;
 namespace MyDinDin.Migrations
 {
     [DbContext(typeof(MyDinDinContext))]
-    partial class MyDinDinContextModelSnapshot : ModelSnapshot
+    [Migration("20220625224504_RelacionamentoBD")]
+    partial class RelacionamentoBD
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
