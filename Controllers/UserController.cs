@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using MyDinDin.Dtos;
-using MyDinDin.Models;
 using MyDinDin.Services;
 
 namespace MyDinDin.Controllers;
@@ -13,7 +12,6 @@ public class UserController : ControllerBase
     public UserController([FromServices] UserService userService)
     {
         _userService = userService;
- 
     }
     [HttpPost]
     public ActionResult<UserResponseDtos> PostUser([FromBody] UserCreateAndUpdateDtos userNewDtos)

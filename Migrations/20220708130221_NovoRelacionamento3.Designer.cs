@@ -11,8 +11,8 @@ using MyDinDin.Data;
 namespace MyDinDin.Migrations
 {
     [DbContext(typeof(MyDinDinContext))]
-    [Migration("20220625224504_RelacionamentoBD")]
-    partial class RelacionamentoBD
+    [Migration("20220708130221_NovoRelacionamento3")]
+    partial class NovoRelacionamento3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,12 +35,7 @@ namespace MyDinDin.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(255)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Categories");
                 });
@@ -61,12 +56,17 @@ namespace MyDinDin.Migrations
                     b.Property<DateTime>("Time")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<double>("Value")
                         .HasColumnType("double");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoriesId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Expenses");
                 });
@@ -88,7 +88,8 @@ namespace MyDinDin.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Goal");
                 });
@@ -99,9 +100,6 @@ namespace MyDinDin.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("CategoriesId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Descripition")
                         .IsRequired()
                         .HasColumnType("varchar(255)");
@@ -109,12 +107,15 @@ namespace MyDinDin.Migrations
                     b.Property<DateTime>("Time")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<double>("Value")
                         .HasColumnType("double");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoriesId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Income");
                 });
@@ -146,33 +147,30 @@ namespace MyDinDin.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("MyDinDin.Models.Categories", b =>
-                {
-                    b.HasOne("MyDinDin.Models.User", "User")
-                        .WithMany("Category")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("MyDinDin.Models.Expenses", b =>
                 {
-                    b.HasOne("MyDinDin.Models.Categories", "Categorie")
+                    b.HasOne("MyDinDin.Models.Categories", "Category")
                         .WithMany("Expenses")
                         .HasForeignKey("CategoriesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Categorie");
+                    b.HasOne("MyDinDin.Models.User", "User")
+                        .WithMany("Expenses")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("MyDinDin.Models.Goal", b =>
                 {
                     b.HasOne("MyDinDin.Models.User", "User")
-                        .WithMany("Goal")
-                        .HasForeignKey("UserId")
+                        .WithOne("Goal")
+                        .HasForeignKey("MyDinDin.Models.Goal", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -181,27 +179,27 @@ namespace MyDinDin.Migrations
 
             modelBuilder.Entity("MyDinDin.Models.Income", b =>
                 {
-                    b.HasOne("MyDinDin.Models.Categories", "Categorie")
-                        .WithMany("Incomes")
-                        .HasForeignKey("CategoriesId")
+                    b.HasOne("MyDinDin.Models.User", "User")
+                        .WithMany("Income")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Categorie");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("MyDinDin.Models.Categories", b =>
                 {
                     b.Navigation("Expenses");
-
-                    b.Navigation("Incomes");
                 });
 
             modelBuilder.Entity("MyDinDin.Models.User", b =>
                 {
-                    b.Navigation("Category");
+                    b.Navigation("Expenses");
 
                     b.Navigation("Goal");
+
+                    b.Navigation("Income");
                 });
 #pragma warning restore 612, 618
         }

@@ -15,13 +15,7 @@ public class Categories
     public string Descripition { get; set; }
 
     // PROPPRIEDADE DE NAVEGAÇÃO 
-    public User User { get; set; }
     public List<Expenses> Expenses { get; set; }
-    public List<Income> Incomes { get; set; }
 
-    // PROPRIEDADE DE CHAVE ESTRANGEIRA 
-    // NOMEADA USANDO CONVENÇÃO - CLASSEID
-    [Required]
-    public int UserId { get; set; }
 
 }

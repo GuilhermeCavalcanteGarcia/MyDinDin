@@ -23,6 +23,9 @@ builder.Services.AddDbContext<MyDinDinContext>(
                 // Scoped - A maioria dos casos usa scoped, é criado o serviço durante uma única vez.
                 // Singleton - Define que o objeto vai ser criado uma única vez, objeto vai ser igual para todas as requisições.
 builder.Services.AddScoped<UserService>(); 
+builder.Services.AddScoped<ExpenseService>(); 
+builder.Services.AddScoped<GoalService>(); 
+builder.Services.AddScoped<IncomeService>(); 
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

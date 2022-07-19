@@ -23,8 +23,9 @@ public class User
     public string Password_Salt { get; set; }
 
     // PROPRIEDADES DE NAVEGAÇÃO 
+    public List<Income> Income { get; set; }
+    public List<Expenses> Expenses { get; set; }
     public List<Goal> Goal { get; set; }
-    public List<Categories> Category { get; set; }
 
 
 }

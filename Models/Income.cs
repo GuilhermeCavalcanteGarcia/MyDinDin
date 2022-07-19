@@ -16,10 +16,10 @@ public class Income
     public DateTime Time { get; set; }
 
     // PROPRIEDADE DE NAVEGAÇÃO 
-    public Categories Categorie { get; set; }
+    public User User { get; set; }
 
     // PROPPRIEDADE DE CHAVE ESTRANGEIRA 
     // NOMEADA USANDO CONVENÇÃO - CLASSEID
     [Required]
-    public int CategoriesId { get; set; }
+    public int UserId { get; set; }
 }

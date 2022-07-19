@@ -16,10 +16,13 @@ public class Expenses
     public DateTime Time { get; set; }
 
     // PROPRIEDADE DE NAVEGAÇÃO 
-    public Categories Categorie { get; set; }
+    public User User { get; set; }
+    public Categories Category { get; set; }
 
     // PROPPRIEDADE DE CHAVE ESTRANGEIRA 
     // NOMEADA USANDO CONVENÇÃO - CLASSEID
+    [Required]
+    public int UserId { get; set; }
     [Required]
     public int CategoriesId { get; set; }
 }
