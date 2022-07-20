@@ -33,6 +33,17 @@ public class GoalService
         return goalResponse;
 
     }
+    public GoalResponseDtos ToRecoverSpecificGoal(int id)
+    {
+        var goal = _contexto.Goal.SingleOrDefault(g => g.Id == id);
+        if(goal is null)
+        {
+            throw new Exception("Meta não encontrada.");
+        }
+
+        var goalResponse = goal.Adapt<GoalResponseDtos>();
+        return goalResponse;
+    }
     public GoalResponseDtos UpdateGoal(int id, GoalCreateAndUpdateDtos goalUpdate)
     {
         Goal goal = _contexto.Goal.SingleOrDefault(g => g.Id == id);

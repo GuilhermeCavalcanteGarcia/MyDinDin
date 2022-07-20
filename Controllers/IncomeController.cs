@@ -35,6 +35,22 @@ public class IncomeController : ControllerBase
             return NotFound();
         }
     }
+    [HttpGet]
+    [Route("{id:int}")]
+    public ActionResult<IncomeResponseDtos> GetIncomeId([FromRoute] int id)
+    {
+        try
+        {
+            var incomeResponse = _incomeService.ToRecoverSpecificIncome(id);
+
+            return incomeResponse;
+        }
+        catch(Exception)
+        {
+            return NotFound();
+
+        }
+    }
     [HttpPut("{id:int}")]
     public ActionResult<IncomeResponseDtos> PutIncome([FromRoute] int id, [FromBody] IncomeCreateAndUpdateDtos incomeUpdate)
     {

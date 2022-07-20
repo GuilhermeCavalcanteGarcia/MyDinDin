@@ -35,6 +35,22 @@ public class GoalController : ControllerBase
             return NotFound();
         }
     }
+    [HttpGet]
+    [Route("{id:int}")]
+    public ActionResult<GoalResponseDtos> GetGoalId([FromRoute] int id)
+    {
+        try
+        {
+            var goalResponse = _goalService.ToRecoverSpecificGoal(id);
+
+            return goalResponse;
+        }
+        catch(Exception)
+        {
+            return NotFound();
+
+        }
+    }
     [HttpPut("{id:int}")]
     public ActionResult<GoalResponseDtos> PutGoal([FromRoute] int id, [FromBody] GoalCreateAndUpdateDtos goalUpdate)
     {

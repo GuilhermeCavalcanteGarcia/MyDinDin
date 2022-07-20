@@ -33,6 +33,17 @@ public class IncomeService
         return incomeResponse;
 
     }
+     public IncomeResponseDtos ToRecoverSpecificIncome(int id)
+    {
+        var income = _contexto.Income.SingleOrDefault(i => i.Id == id);
+        if(income is null)
+        {
+            throw new Exception("Receita não encontrada.");
+        }
+
+        var incomeResponse = income.Adapt<IncomeResponseDtos>();
+        return incomeResponse;
+    }
     public IncomeResponseDtos UpdateIncome(int id, IncomeCreateAndUpdateDtos incomeUpdate)
     {
         Income income = _contexto.Income.SingleOrDefault(i => i.Id == id);

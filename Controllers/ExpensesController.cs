@@ -37,7 +37,7 @@ public class ExpensesController : ControllerBase
     }
     [HttpGet]
     [Route("{id:int}")]
-    public ActionResult<ExpensesResponseDtos> GetUserId([FromRoute] int id)
+    public ActionResult<ExpensesResponseDtos> GetExpenseId([FromRoute] int id)
     {
         try
         {
@@ -84,5 +84,6 @@ public class ExpensesController : ControllerBase
             return NotFound();
         }
     }
+    
 
 }
